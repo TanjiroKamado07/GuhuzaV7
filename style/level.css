@@ -1,0 +1,85 @@
+/* Background Image and Black Overlay */
+body {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: url('../images/bgmeeting.jpg') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* Overlay for Readability */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* 60% opacity */
+    z-index: -1;
+}
+
+/*  Level Container */
+.level-container {
+    text-align: center;
+    color: white;
+    padding: 50px 20px;
+}
+/*  Level Grid */
+.levels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Responsive grid */
+    gap: 20px;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+/*  Level Tile (Now using <a> instead of <button>) */
+.level-tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    color: black;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+/*  Hover Effect */
+.level-tile:hover {
+    background: #007bff;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .levels-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Smaller tiles */
+        gap: 15px;
+    }
+
+    .level-tile {
+        font-size: 1rem;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .levels-grid {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Even smaller tiles */
+        gap: 10px;
+    }
+
+    .level-tile {
+        font-size: 0.9rem;
+        padding: 12px;
+    }
+}

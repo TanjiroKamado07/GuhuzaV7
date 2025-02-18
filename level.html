@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beginner mode</title>
+    <link rel="icon" href="../images/g1.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="style/level.css"> <!-- Ensure it links to the correct CSS file -->
+    <link rel="stylesheet" href="style/style.css"> <!-- Custom CSS for levels -->
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="#"><img src="https://guhuza.com/logo/logo_white_large.png" alt="Guhuza Logo"></a>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="nav-center">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="quizindex.html" id="play-button">Play</a></li>
+                    <li><a href="#">Leaderboard</a></li>
+                    <li><a href="#">Profile</a></li>
+                </ul>
+            </nav>
+
+            <!-- Authentication Buttons -->
+            <div class="auth-buttons">
+                <span id="user-name" class="hidden"></span> <!--  Display user name here -->
+                <a href="#" class="btn-signin" id="login-btn">Sign In</a>
+                <a href="#" class="btn-signup" id="signup-btn">Sign Up</a>
+                <button id="logout-btn" class="btn-logout hidden" onclick="logoutUser()">Logout</button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Authentication Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="auth-tabs">
+                <button id="login-tab" class="active">Login</button>
+                <button id="signup-tab">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login-form" class="auth-form">
+                <h2>Login</h2>
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button class="auth-submit" onclick="loginUser()">Login</button>
+            </div>
+
+            <!-- Signup Form -->
+            <div id="signup-form" class="auth-form hidden">
+                <h2>Sign Up</h2>
+                <input type="text" id="signup-name" placeholder="Full Name" required>
+                <input type="email" id="signup-email" placeholder="Email" required>
+                <input type="password" id="signup-password" placeholder="Password" required>
+
+                <small id="password-requirements" style="color: red; display: none;">
+                    Password must be 8+ characters, include uppercase, lowercase, number & special character.
+                </small>
+                
+
+                <button class="auth-submit" onclick="signupUser()">Sign Up</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--  Level Selection Grid -->
+    <div class="level-container">
+        <h1>Beginner mode</h1>
+        <div class="levels-grid">
+            <a href="quiz1.html" class="level-tile">Level 1</a>
+            <a href="quiz2.html" class="level-tile">Level 2</a>
+            <a href="quiz3.html" class="level-tile">Level 3</a>
+            <a href="quiz4.html" class="level-tile">Level 4</a>
+            <a href="quiz5.html" class="level-tile">Level 5</a>
+            <a href="quiz6.html" class="level-tile">Level 6</a>
+            <a href="quiz7.html" class="level-tile">Level 7</a>
+            <a href="quiz8.html" class="level-tile">Level 8</a>
+            <a href="quiz9.html" class="level-tile">Level 9</a>
+            <a href="quiz10.html" class="level-tile">Level 10</a>
+            <a href="quiz11.html" class="level-tile">Level 11</a>
+            <a href="quiz12.html" class="level-tile">Level 12</a>
+            <a href="quiz13.html" class="level-tile">Level 13</a>
+            <a href="quiz14.html" class="level-tile">Level 14</a>
+            <a href="quiz15.html" class="level-tile">Level 15</a>
+            <a href="quiz16.html" class="level-tile">Level 16</a>
+            <a href="quiz17.html" class="level-tile">Level 17</a>
+            <a href="quiz18.html" class="level-tile">Level 18</a>
+            <a href="quiz19.html" class="level-tile">Level 19</a>
+            <a href="quiz20.html" class="level-tile">Level 20</a>
+        </div>
+    </div>
+
+    <!-- Footer  -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://guhuza.com/terms-of-use">Terms of Service</a>
+                <span>|</span>
+                <a href="https://guhuza.com/privacy-policy">Privacy Policy</a>
+                <span>|</span>
+                <a href="https://guhuza.com/contact">Contact Us</a>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2024 Guhuza. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const token = localStorage.getItem("token");
+    
+            if (!token) {
+                showToast("⚠️ You must be logged in to play!", "error");
+    
+                setTimeout(() => {
+                    window.location.href = "index.html"; // Redirect back to home
+                }, 2000);
+            }
+        });
+    
+        function showToast(message, type) {
+            const toast = document.createElement("div");
+            toast.classList.add("toast", type);
+            toast.innerText = message;
+            document.body.appendChild(toast);
+    
+            setTimeout(() => {
+                toast.remove();
+            }, 2500);
+        }
+    </script>
+    
+    
+    
+
+
+</body>
+</html>

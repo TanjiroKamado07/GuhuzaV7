@@ -1,0 +1,150 @@
+body {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: url('../images/bgmeeting.jpg') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/*  Black Overlay */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Adjust opacity (0.6 = 60% black) */
+    z-index: -1; /* Keep it behind content */
+}
+/*  Tiles Container - Responsive Grid */
+.tiles-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Responsive layout */
+    gap: 30px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+
+/*  Individual Tile - Adjusts for Mobile & Desktop */
+.tile {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 280px;
+    max-width: 350px;
+    margin: auto;
+    transition: transform 0.3s ease;
+}
+
+/*  Tile Hover Effect */
+.tile:hover {
+    transform: translateY(-5px);
+}
+
+/*  Responsive Tile Button */
+.btn-tile {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    margin-top: 15px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    font-size: 1.1rem;
+}
+
+.btn-tile:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+/*  Responsive Design for Tablets */
+@media (max-width: 1024px) {
+    .tiles-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Smaller columns */
+        gap: 20px;
+    }
+
+    .tile {
+        min-height: 260px;
+        padding: 20px;
+    }
+
+    .btn-tile {
+        font-size: 1rem;
+        padding: 10px 15px;
+    }
+}
+
+/*  Mobile-Friendly Adjustments */
+@media (max-width: 768px) {
+    .tiles-container {
+        grid-template-columns: 1fr; /* Single column layout */
+        padding: 30px 10px;
+    }
+
+    .tile {
+        width: 90%;
+        max-width: 320px;
+        margin: auto;
+        padding: 18px;
+        min-height: auto;
+    }
+
+    .btn-tile {
+        font-size: 0.9rem;
+        padding: 10px 12px;
+    }
+}
+
+/* Small Phones Optimization */
+@media (max-width: 480px) {
+    .tiles-container {
+        padding: 20px 5px;
+    }
+
+    .tile {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .btn-tile {
+        font-size: 0.85rem;
+        padding: 8px 10px;
+    }
+}
+
+
+/*  Style for Images in Tiles */
+.tile img {
+    width: 100%; /* Full width of the tile */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 180px; /* Set a max height */
+    object-fit: cover; /* Ensure images crop properly */
+    border-radius: 8px; /* Slight rounding for aesthetics */
+    margin: 10px 0; /* Space around images */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .tile img {
+        max-height: 150px; /* Reduce height for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .tile img {
+        max-height: 120px; /* Further reduce height for mobile */
+    }
+}

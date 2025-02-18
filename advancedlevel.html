@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced mode</title>
+    <link rel="icon" href="../images/g1.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="style/level.css"> <!-- Global styles -->
+    <link rel="stylesheet" href="style/style.css"> <!-- Level-specific styles -->
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="#"><img src="https://guhuza.com/logo/logo_white_large.png" alt="Guhuza Logo"></a>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="nav-center">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="quizindex.html" id="play-button">Play</a></li>
+                    <li><a href="#">Leaderboard</a></li>
+                    <li><a href="#">Profile</a></li>
+                </ul>
+            </nav>
+
+            <!-- Authentication Buttons -->
+            <div class="auth-buttons">
+                <span id="user-name" class="hidden"></span> <!--  Display user name here -->
+                <a href="#" class="btn-signin" id="login-btn">Sign In</a>
+                <a href="#" class="btn-signup" id="signup-btn">Sign Up</a>
+                <button id="logout-btn" class="btn-logout hidden" onclick="logoutUser()">Logout</button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Authentication Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="auth-tabs">
+                <button id="login-tab" class="active">Login</button>
+                <button id="signup-tab">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login-form" class="auth-form">
+                <h2>Login</h2>
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button class="auth-submit" onclick="loginUser()">Login</button>
+            </div>
+
+            <!-- Signup Form -->
+            <div id="signup-form" class="auth-form hidden">
+                <h2>Sign Up</h2>
+                <input type="text" id="signup-name" placeholder="Full Name" required>
+                <input type="email" id="signup-email" placeholder="Email" required>
+                <input type="password" id="signup-password" placeholder="Password" required>
+
+                <small id="password-requirements" style="color: red; display: none;">
+                    Password must be 8+ characters, include uppercase, lowercase, number & special character.
+                </small>
+                
+
+                <button class="auth-submit" onclick="signupUser()">Sign Up</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!--  Level Selection Grid -->
+    <div class="level-container">
+        <h1>Advanced mode</h1>
+        <div class="levels-grid">
+            <a href="quiz41.html" class="level-tile">Level 41</a>
+            <a href="quiz42.html" class="level-tile">Level 42</a>
+            <a href="quiz43.html" class="level-tile">Level 43</a>
+            <a href="quiz44.html" class="level-tile">Level 44</a>
+            <a href="quiz45.html" class="level-tile">Level 45</a>
+            <a href="quiz46.html" class="level-tile">Level 46</a>
+            <a href="quiz47.html" class="level-tile">Level 47</a>
+            <a href="quiz48.html" class="level-tile">Level 48</a>
+            <a href="quiz49.html" class="level-tile">Level 49</a>
+            <a href="quiz50.html" class="level-tile">Level 50</a>
+        </div>
+    </div>
+
+    <!--  Footer  -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://guhuza.com/terms-of-use">Terms of Service</a>
+                <span>|</span>
+                <a href="https://guhuza.com/privacy-policy">Privacy Policy</a>
+                <span>|</span>
+                <a href="https://guhuza.com/contact">Contact Us</a>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2024 Guhuza. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+
+    <!-- Restrict Access to Logged-in Users -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const token = localStorage.getItem("token");
+
+            if (!token) {
+                document.body.style.display = "none"; // Hide page content
+                showToast("⚠️ You must be logged in to access this page.", "error");
+
+                setTimeout(() => {
+                    window.location.href = "quizindex.html"; // Redirect back to quiz page
+                }, 2500);
+            }
+        });
+    </script>
+
+</body>
+</html>

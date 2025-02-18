@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guhuza Project</title>
+    <link rel="icon" href="../images/g1.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="#"><img src="https://guhuza.com/logo/logo_white_large.png" alt="Guhuza Logo"></a>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="nav-center">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="quizindex.html" id="play-button">Play</a></li>
+                    <li><a href="#">Leaderboard</a></li>
+                    <li><a href="#">Profile</a></li>
+                </ul>
+            </nav>
+
+            <!-- Authentication Buttons -->
+            <div class="auth-buttons">
+                <span id="user-name" class="hidden"></span> <!-- ✅ Display user name here -->
+                <a href="#" class="btn-signin" id="login-btn">Sign In</a>
+                <a href="#" class="btn-signup" id="signup-btn">Sign Up</a>
+                <button id="logout-btn" class="btn-logout hidden" onclick="logoutUser()">Logout</button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Authentication Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="auth-tabs">
+                <button id="login-tab" class="active">Login</button>
+                <button id="signup-tab">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login-form" class="auth-form">
+                <h2>Login</h2>
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button class="auth-submit" onclick="loginUser()">Login</button>
+            </div>
+
+            <!-- Signup Form -->
+            <div id="signup-form" class="auth-form hidden">
+                <h2>Sign Up</h2>
+                <input type="text" id="signup-name" placeholder="Full Name" required>
+                <input type="email" id="signup-email" placeholder="Email" required>
+                <input type="password" id="signup-password" placeholder="Password" required>
+
+                <small id="password-requirements" style="color: red; display: none;">
+                    Password must be 8+ characters, include uppercase, lowercase, number & special character.
+                </small>
+                
+
+                <button class="auth-submit" onclick="signupUser()">Sign Up</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Welcome Section -->
+    <div class="welcome-section">
+        <div class="overlay"></div> <!-- Overlay added here -->
+        <div class="welcome-content">
+            <h1>Welcome to Guhuza</h1>
+            <p>Guhuza is a web-based game that engages users through the job-seeking and hiring process. 
+            <br>Compete with other players, improve your skills, and experience the excitement of landing your dream job in a fun and interactive way!
+                <br><br><br>Rules to remember ↓ </p>
+        </div>
+    </div>
+
+    <!-- Tiles Section -->
+    <div class="tiles-section">
+        <div class="container">
+            <!--  Tile -->
+            <div class="tile">
+                <h2>Select a mode</h2>
+                <p>Job seeker will select a mode from Beginner, Intermediate or Advanced to play the quiz.</p>
+                <img src="images/medium2.jpg" alt="Topic 1 Image" class="tile-image">
+                
+                <a href="quizindex.html" class="btn-tile start-quiz-btn">Start quiz</a>
+            </div>
+
+            <!--  Tile -->
+            <div class="tile">
+                <h2>Time limit!</h2>
+                <p>Every question comes with a time limit of 25 seconds, so choose answer within time to earn points.</p>
+                <img src="images/time2.jpg" alt="Topic 1 Image" class="tile-image">
+                
+                <a href="quizindex.html" class="btn-tile start-quiz-btn">Start quiz</a>
+            </div>
+
+            <!-- Practice Tile -->
+            <div class="tile">
+                <h2>Earn points</h2>
+                <p>Every correct answer gives you 1 point and there is no negative marking for incorrect answers.</p>
+                <img src="images/point.jpg" alt="Topic 1 Image" class="tile-image">
+                
+                <a href="quizindex.html" class="btn-tile start-quiz-btn">Start quiz</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://guhuza.com/terms-of-use">Terms of Service</a>
+                <span>|</span>
+                <a href="https://guhuza.com/privacy-policy">Privacy Policy</a>
+                <span>|</span>
+                <a href="https://guhuza.com/contact">Contact Us</a>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2024 Guhuza. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll(".start-quiz-btn").forEach(button => {
+            button.addEventListener("click", function (event) {
+                const token = localStorage.getItem("token");
+    
+                if (!token) {
+                    event.preventDefault(); // Stop navigation
+                    showToast("⚠️ You must be logged in to play!", "error");
+                } else {
+                    window.location.href = "quizindex.html"; // Redirect if logged in
+                }
+            });
+        });
+    
+        function showToast(message, type) {
+            const toast = document.createElement("div");
+            toast.classList.add("toast", type);
+            toast.innerText = message;
+            document.body.appendChild(toast);
+    
+            setTimeout(() => {
+                toast.remove();
+            }, 2500);
+        }
+    </script>
+
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

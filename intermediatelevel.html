@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intermediate Level</title>
+    <link rel="icon" href="../images/g1.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="style/style.css"> <!-- Global styles -->
+    <link rel="stylesheet" href="style/level.css"> <!-- Custom styles for levels -->
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><img src="https://guhuza.com/logo/logo_white_large.png" alt="Guhuza Logo"></a>
+            </div>
+            <nav class="nav-center">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="quizindex.html">Play</a></li>
+                    <li><a href="#">Leaderboard</a></li>
+                    <li><a href="#">Profile</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <span id="user-name" class="hidden"></span> <!-- ✅ Username appears here -->
+                <a href="#" class="btn-signin" id="login-btn">Sign In</a>
+                <a href="#" class="btn-signup" id="signup-btn">Sign Up</a>
+                <button id="logout-btn" class="btn-logout hidden" onclick="logoutUser()">Logout</button>
+            </div>
+            
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+ <!-- Level Selection Grid -->
+ <div class="level-container">
+    <h1>Intermediate mode</h1>
+    <div class="levels-grid">
+        <a href="quiz21.html" class="level-tile">Level 21</a>
+        <a href="quiz22.html" class="level-tile">Level 22</a>
+        <a href="quiz23.html" class="level-tile">Level 23</a>
+        <a href="quiz24.html" class="level-tile">Level 24</a>
+        <a href="quiz25.html" class="level-tile">Level 25</a>
+        <a href="quiz26.html" class="level-tile">Level 26</a>
+        <a href="quiz27.html" class="level-tile">Level 27</a>
+        <a href="quiz28.html" class="level-tile">Level 28</a>
+        <a href="quiz29.html" class="level-tile">Level 29</a>
+        <a href="quiz30.html" class="level-tile">Level 30</a>
+        <a href="quiz31.html" class="level-tile">Level 31</a>
+        <a href="quiz32.html" class="level-tile">Level 32</a>
+        <a href="quiz33.html" class="level-tile">Level 33</a>
+        <a href="quiz34.html" class="level-tile">Level 34</a>
+        <a href="quiz35.html" class="level-tile">Level 35</a>
+        <a href="quiz36.html" class="level-tile">Level 36</a>
+        <a href="quiz37.html" class="level-tile">Level 37</a>
+        <a href="quiz38.html" class="level-tile">Level 38</a>
+        <a href="quiz39.html" class="level-tile">Level 39</a>
+        <a href="quiz40.html" class="level-tile">Level 40</a>
+    </div>
+</div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://guhuza.com/terms-of-use">Terms of Service</a>
+                <span>|</span>
+                <a href="https://guhuza.com/privacy-policy">Privacy Policy</a>
+                <span>|</span>
+                <a href="https://guhuza.com/contact">Contact Us</a>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2024 Guhuza. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+
+    <!--  Restrict Access to Logged-in Users -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const token = localStorage.getItem("token");
+
+            if (!token) {
+                document.body.style.display = "none"; // Hide page content
+                showToast("⚠️ You must be logged in to access this page.", "error");
+
+                setTimeout(() => {
+                    window.location.href = "quizindex.html"; // Redirect back to quiz page
+                }, 2500);
+            }
+        });
+
+
+    document.addEventListener("DOMContentLoaded", updateUI);
+
+
+    </script>
+
+</body>
+</html>

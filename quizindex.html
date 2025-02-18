@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guhuza Project</title>
+    <link rel="icon" href="../images/g1.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="../style/quizindex.css">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="#"><img src="https://guhuza.com/logo/logo_white_large.png" alt="Guhuza Logo"></a>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="nav-center">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="quizindex.html" id="quiz-link" style="display: none;">Play Quiz</a></li> <!-- Prevent preview -->
+                    <li><a href="#">Leaderboard</a></li>
+                    <li><a href="#">Profile</a></li>
+                </ul>
+            </nav>
+
+            <!-- Authentication Buttons -->
+            <div class="auth-buttons">
+                <span id="user-name" class="hidden"></span> <!-- Display user name here -->
+                <a href="#" class="btn-signin" id="login-btn">Sign In</a>
+                <a href="#" class="btn-signup" id="signup-btn">Sign Up</a>
+                <button id="logout-btn" class="btn-logout hidden" onclick="logoutUser()">Logout</button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Authentication Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="auth-tabs">
+                <button id="login-tab" class="active">Login</button>
+                <button id="signup-tab">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login-form" class="auth-form">
+                <h2>Login</h2>
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button class="auth-submit" onclick="loginUser()">Login</button>
+            </div>
+
+            <!-- Signup Form -->
+            <div id="signup-form" class="auth-form hidden">
+                <h2>Sign Up</h2>
+                <input type="text" id="signup-name" placeholder="Full Name" required>
+                <input type="email" id="signup-email" placeholder="Email" required>
+                <input type="password" id="signup-password" placeholder="Password" required>
+
+                <small id="password-requirements" style="color: red; display: none;">
+                    Password must be 8+ characters, include uppercase, lowercase, number & special character.
+                </small>
+                
+
+                <button class="auth-submit" onclick="signupUser()">Sign Up</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    
+
+    <!-- Main Content: Three Tiles with Text & Button -->
+    <section class="tiles-container">
+        <div class="tile">
+            <h2>Beginner mode</h2>
+            <p>It consist of 20 level. Job seeker has to clear each level to move on to next.</p>
+            <img src="images/easy2.jpg" alt="Topic 1 Image" class="tile-image">
+            <a href="level.html" id="play-button" class="btn-tile">Play</a>
+
+        </div>
+
+        <div class="tile">
+            <h2>Intermediate mode</h2>
+            <p>It consist of 20 level. Job seeker has to clear each level to move on to next.</p>
+            <img src="images/medium2.jpg" a lt="Topic 1 Image" class="tile-image">
+            <a href="intermediatelevel.html" class="btn-tile">Play Quiz</a>
+        </div>
+
+        <div class="tile">
+            <h2>Advanced mode</h2>
+            <p>It consist of 10 level. Job seeker has to clear each level to move on to next.</p>
+            <img src="images/hard2.jpg" alt="Topic 1 Image" class="tile-image">
+            <a href="advancedlevel.html" class="btn-tile">Play Quiz</a>
+        </div>
+    </section>
+
+    <!-- Footer  -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://guhuza.com/terms-of-use">Terms of Service</a>
+                <span>|</span>
+                <a href="https://guhuza.com/privacy-policy">Privacy Policy</a>
+                <span>|</span>
+                <a href="https://guhuza.com/contact">Contact Us</a>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2024 Guhuza. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="../js/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const token = localStorage.getItem("token");
+    
+            if (!token) {
+                document.body.style.display = "none"; // Hide page content
+                showToast("⚠️ You must be logged in to access this page.", "error");
+    
+                setTimeout(() => {
+                    window.location.href = "index.html"; // Redirect after showing message
+                }, 2500);
+            }
+        });
+    </script>
+    
+    
+</body>
+</html>
