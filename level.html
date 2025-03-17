@@ -24,7 +24,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="quizindex.html" id="play-button">Play</a></li>
                     <li><a href="#">Leaderboard</a></li>
-                    <li><a href="#">Profile</a></li>
+                    
                 </ul>
             </nav>
 
@@ -149,6 +149,22 @@
                 toast.remove();
             }, 2500);
         }
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+    const startQuizButton = document.getElementById("startQuizButton");
+
+    startQuizButton.addEventListener("click", async () => {
+        // Start the quiz
+        const quizResponse = await fetch("http://localhost:5000/api/leaderboard/top"); // Your API endpoint
+        if (!quizResponse.ok) {
+            console.log("Error starting the quiz");
+        } else {
+            console.log("Quiz started");
+        }
+    });
+});
+
     </script>
     
     

@@ -22,8 +22,8 @@
                 <ul class="nav-links">
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="../quizindex.html" id="play-button">Play</a></li>
-                    <li><a href="#">Leaderboard</a></li>
-                    <li><a href="#">Profile</a></li>
+                    <li><a href="../public/leaderboard.html">Leaderboard</a></li>
+                    
                 </ul>
             </nav>
 
@@ -134,7 +134,7 @@
             <button class="restart">Replay Quiz</button>
             <button class="quit">Quit Quiz</button>
             <a href="./quizPlay2.html">
-                <button class="continue" id="nextLevel">Next Level</button>
+                <button class="continue" id="finish-quiz-button"">Next Level</button>
             </a>
            
         </div>
@@ -161,6 +161,58 @@
     <!-- Inside this JavaScript file I've coded all Quiz Codes -->
     <script src="/Projectv3/js/quizScript.js"></script>
     
+<script>
 
+
+document.addEventListener("DOMContentLoaded", () => {
+    const finishQuizButton = document.getElementById("finish-quiz-button"); // Get the finish quiz button
+
+    if (finishQuizButton) {
+        finishQuizButton.addEventListener("click", async () => {
+            const username = localStorage.getItem("username"); // Get the username from localStorage
+            const score = 7; // Get the score from the quiz logic (you should replace this with the actual score)
+
+            // Send the score to the server using fetch
+            const response = await fetch("/api/quiz/finish", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, score }) // Send the username and score
+            });
+
+            if (response.ok) {
+                console.log("Score sent to backend and leaderboard updated!");
+                window.location.href = '/public/leaderboard.html'; // Redirect to leaderboard page after successful score submission
+            } else {
+                console.log("Error sending score");
+            }
+        });
+    }
+});
+
+
+
+finishQuizButton.addEventListener("click", async () => {
+    const username = localStorage.getItem("username"); // Get the username from localStorage
+    const score = 7; // This should be the score from the quiz logic
+
+    const response = await fetch("/api/quiz/finish", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, score }) // Send the username and score to the backend
+    });
+
+    if (response.ok) {
+        console.log("Score sent to backend and leaderboard updated!");
+        window.location.href = 'leaderboard.html'; // Redirect to leaderboard page
+    } else {
+        console.log("Error sending score");
+    }
+});
+
+</script>
 </body>
 </html>
